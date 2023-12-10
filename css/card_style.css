@@ -11,14 +11,14 @@ body {
     line-height: 1.5;
     font-size: 1.4rem;
     font-family: sans-serif;
-    background: linear-gradient(120deg, hsl(0, 2%, 23%), hsl(218, 7%, 23%));
+    background: linear-gradient(120deg, hsl(0, 0%, 100%), hsl(218, 11%, 86%));
     color: hsl(0, 0%, 0%);
 }
 
 a {
     color: hsl(0, 0%, 4%);
     &:hover {
-        color: hsl(0, 0%, 99%);
+        color: hsl(212, 100%, 69%);
     }
 }
 
@@ -47,7 +47,7 @@ a {
     position: relative;
     inset-block-start: 0;
     overflow: hidden;
-    background: hsl(40, 100%, 98%);
+    background: hsl(214, 24%, 81%);
     transition: all 0.2s ease;
     clip-path: polygon( var(--slant) 0, 100% 0, calc(100% - var(--slant)) 100%, 0 100%);
     clip-path: polygon( calc(var(--slant) - var(--padding)) 0, 100% 0, calc(100% - var(--slant) + var(--padding)) 100%, 0 100%);
@@ -60,7 +60,7 @@ a {
 
 .card__start,
 .card__end {
-    background: linear-gradient(120deg, hsl(137, 100%, 95%), rgb(145, 197, 255));
+    background: linear-gradient(120deg, hsl(223, 62%, 75%), rgb(107, 149, 197));
     block-size: 100%;
     inline-size: var(--slant);
 }

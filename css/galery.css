@@ -1,0 +1,124 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    min-block-size: 100vb;
+    line-height: 1.5;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    background: linear-gradient(120deg, hsl(0, 0%, 9%), hsl(0, 0%, 0%));
+}
+
+#carousel {
+    overflow-x: auto;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* For Safari 11, Chrome 69+ */
+
+#carousel.snap {
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* Needed to work on iOS Safari */
+}
+
+#carousel.snap>div {
+    scroll-snap-align: center;
+}
+
+
+/* For Firefox, Edge, IE */
+
+#carousel.snap {
+    scroll-snap-points-x: initial;
+    -ms-scroll-snap-points-x: initial;
+    scroll-snap-points-y: repeat(100%);
+    -ms-scroll-snap-points-y: repeat(100%);
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#carousel>div {
+    min-width: 100%;
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+}
+
+#carousel-1 {
+    background-color: #8a6f4d;
+}
+
+#carousel-2 {
+    background-color: #e09957;
+}
+
+#carousel-3 {
+    background-color: #4e2f2f;
+}
+
+#carousel-4 {
+    background-color: #487463;
+}
+
+#carousel-5 {
+    background-color: #6e293a;
+}
+
+#carousel-6 {
+    background-color: #c8afda;
+}
+
+#carousel-7 {
+    background-color: #879299;
+}
+
+#carousel-8 {
+    background-color: #3e5a4a;
+}
+
+#carousel-9 {
+    background-color: #4c5e68;
+}
+
+#carousel-10 {
+    background-color: #572926;
+}
+
+div.gallery {
+    margin: 15px;
+    float: left;
+    width: 50%;
+}
+
+div.gallery img {
+    height: auto;
+    border: 0.2em solid;
+    border-radius: 2em;
+    border-color: #f0f0f0;
+}
+
+div.desc {
+    padding: 0.1em;
+    text-align: center;
+}

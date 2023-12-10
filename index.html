@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/card_style.css" />
+
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <head>
     <meta charset="UTF-8" />
-    <title>Résumé</title>
+    <title>Home</title>
 </head>
 
 <body>
-    ― Hello World! &#x1F609;
+    <section class="main">
+
+        <article class="card card--first">
+            <div class="card__start"></div>
+            <div class="card__end"></div>
+
+            <div class="card__content">
+                <a href="/html/about.html"><img class="card__image" src="/assets/avatar.png" alt="Oh that's me!" /></a>
+                <h2 class="card__title"><a href="/html/about.html">General Information</a></h2>
+                <div class="card__text">
+                    <p>Main information from my resume along with a short personal description.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card--center">
+            <div class="card__start"></div>
+            <div class="card__end"></div>
+
+            <div class="card__content">
+                <a href="/html/timeline.html"><img class="card__image" src="/assets/timeline.jpg" alt="Creation of true programmer" /></a>
+                <h2 class="card__title"><a href="/html/timeline.html">My Timeline</a></h2>
+                <div class="card__text">
+                    <p>The most important (in my opinion) moments of my life are described from birth to 2023.</p>
+                </div>
+            </div>
+        </article>
+
+        <article class="card card--last">
+            <div class="card__start"></div>
+            <div class="card__end"></div>
+
+            <div class="card__content">
+                <a href="/html/more.html"><img class="card__image" src="/assets/more.png" alt="Some old pixel art made by me." /></a>
+                <h2 class="card__title"><a href="/html/more.html">Galery</a></h2>
+                <div class="card__text">
+                    <p>A little bit of photography and personal drawings!</p>
+                </div>
+            </div>
+        </article>
+
+    </section>
+
+
+
 </body>
 
 </html>

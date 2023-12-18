@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Calculator</title>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+    
+    <link rel="stylesheet" href="../css/time.css">
+
+    <script type="text/javascript" src="../js/localtime.js"></script>
+</head>
+<body>
+    <h1>Local Time Display</h1>
+
+  <div id="localTime"></div>
+  <h1>Time Calculator</h1>
+
+  <div id="timeInputs">
+    <!-- Initial input for hours and minutes -->
+    <div>
+      <input type="number" class="time-input" min="0" placeholder="Hours">
+      <input type="number" class="time-input" min="0" placeholder="Minutes">
+    </div>
+  </div>
+
+  <button onclick="addTimeInput()">Add Time</button>
+
+  <div>
+    <input type="number" id="multiplyFactor" min="0" placeholder="Multiply by" oninput="calculateResult()">
+  </div>
+
+  <div id="result">Sum: 00:00</div>
+
+
+
+<script>
+    function addTimeInput() {
+    // Create a new div for the time input
+    const timeInputsDiv = document.getElementById('timeInputs');
+    const newTimeInputDiv = document.createElement('div');
+
+    // Add input fields for hours and minutes
+    newTimeInputDiv.innerHTML = `
+        <input type="number" class="time-input" min="0" placeholder="Hours">
+        <input type="number" class="time-input" min="0" placeholder="Minutes">
+    `;
+
+    // Append the new input to the container
+    timeInputsDiv.appendChild(newTimeInputDiv);
+
+    // Add event listener to the new inputs
+    const inputs = newTimeInputDiv.querySelectorAll('.time-input');
+    inputs.forEach(input => input.addEventListener('input', calculateResult));
+  }
+
+  function calculateResult() {
+    // Get all input elements with class "time-input"
+    const timeInputs = document.querySelectorAll('.time-input');
+
+    // Initialize variables to store total hours and minutes
+    let totalHours = 0;
+    let totalMinutes = 0;
+
+    // Loop through each time input and add up the values
+    timeInputs.forEach(input => {
+      const value = parseInt(input.value, 10);
+      if (!isNaN(value)) {
+        if (input.previousElementSibling.textContent === 'Hours:') {
+          totalHours += value;
+        } else if (input.previousElementSibling.textContent === 'Minutes:') {
+          totalMinutes += value;
+        }
+      }
+    });
+
+    // Calculate the remaining hours and minutes from totalMinutes
+    totalHours += Math.floor(totalMinutes / 60);
+    totalMinutes = totalMinutes % 60;
+
+    // Get the multiplication factor
+    const multiplyFactor = parseFloat(document.getElementById('multiplyFactor').value) || 1;
+
+    // Multiply the total time by the factor
+    totalHours *= multiplyFactor;
+    totalMinutes *= multiplyFactor;
+
+    // Calculate the remaining hours and minutes from totalMinutes after multiplication
+    totalHours += Math.floor(totalMinutes / 60);
+    totalMinutes = totalMinutes % 60;
+
+    // Format the result
+    const formattedResult = `${String(totalHours).padStart(2, '0')}:${String(totalMinutes).padStart(2, '0')}`;
+
+    // Display the result
+    document.getElementById('result').textContent = `Result: ${formattedResult}`;
+  }
+
+  // Listen for input changes and recalculate the result
+  const inputs = document.querySelectorAll('.time-input');
+  inputs.forEach(input => input.addEventListener('input', calculateResult));
+
+  // Listen for multiplication factor changes and recalculate the result
+  document.getElementById('multiplyFactor').addEventListener('input', calculateResult);
+</script>
+
+</body>
+</html>

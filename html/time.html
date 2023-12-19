@@ -11,98 +11,127 @@
     <script type="text/javascript" src="../js/localtime.js"></script>
 </head>
 <body>
-    <h1>Local Time Display</h1>
-
-  <div id="localTime"></div>
-  <h1>Time Calculator</h1>
-
+  <h1 id="stars">I will check your work!🧐</h1>
+  <h1 id="result">Your result will be there!</h1>
   <div id="timeInputs">
     <!-- Initial input for hours and minutes -->
     <div>
-      <input type="number" class="time-input" min="0" placeholder="Hours">
-      <input type="number" class="time-input" min="0" placeholder="Minutes">
+      <label for="hours">Hours:</label>
+      <input type="number" class="time-input" id="time-input" min="0" max="24" placeholder="0">
+      <label for="minutes">Minutes:</label>
+      <input type="number" class="time-input" id="time-input" min="0" max="59" placeholder="0">
     </div>
   </div>
-
-  <button onclick="addTimeInput()">Add Time</button>
-
-  <div>
-    <input type="number" id="multiplyFactor" min="0" placeholder="Multiply by" oninput="calculateResult()">
+  <div style="display: flex;">
+    <input type="number" id="multiplyFactor" min="0" placeholder="Multiply by: 1" oninput="calculateResult()">
+    <button class="button-28" onclick="addTimeInput()">Add time</button>
   </div>
 
-  <div id="result">Sum: 00:00</div>
-
-
-
-<script>
-    function addTimeInput() {
-    // Create a new div for the time input
-    const timeInputsDiv = document.getElementById('timeInputs');
-    const newTimeInputDiv = document.createElement('div');
-
-    // Add input fields for hours and minutes
-    newTimeInputDiv.innerHTML = `
-        <input type="number" class="time-input" min="0" placeholder="Hours">
-        <input type="number" class="time-input" min="0" placeholder="Minutes">
-    `;
-
-    // Append the new input to the container
-    timeInputsDiv.appendChild(newTimeInputDiv);
-
-    // Add event listener to the new inputs
-    const inputs = newTimeInputDiv.querySelectorAll('.time-input');
-    inputs.forEach(input => input.addEventListener('input', calculateResult));
-  }
-
-  function calculateResult() {
-    // Get all input elements with class "time-input"
-    const timeInputs = document.querySelectorAll('.time-input');
-
-    // Initialize variables to store total hours and minutes
-    let totalHours = 0;
-    let totalMinutes = 0;
-
-    // Loop through each time input and add up the values
-    timeInputs.forEach(input => {
-      const value = parseInt(input.value, 10);
-      if (!isNaN(value)) {
-        if (input.previousElementSibling.textContent === 'Hours:') {
-          totalHours += value;
-        } else if (input.previousElementSibling.textContent === 'Minutes:') {
-          totalMinutes += value;
+    <script>
+        function addTimeInput() {
+          // Create a new div for the time input
+          const timeInputsDiv = document.getElementById('timeInputs');
+          const newTimeInputDiv = document.createElement('div');
+    
+          // Add input fields for hours and minutes
+          newTimeInputDiv.innerHTML = `
+            <label for="hours">Hours:</label>
+            <input type="number" class="time-input" id="time-input" min="0" placeholder="0">
+            <label for="minutes">Minutes:</label>
+            <input type="number" class="time-input" id="time-input" min="0" placeholder="0">
+          `;
+    
+          // Append the new input to the container
+          timeInputsDiv.appendChild(newTimeInputDiv);
+    
+          // Add event listener to the new inputs
+          const inputs = newTimeInputDiv.querySelectorAll('.time-input');
+          inputs.forEach(input => input.addEventListener('input', calculateResult));
         }
-      }
-    });
+    
+        function calculateResult() {
+          // Get all input elements with class "time-input"
+          const timeInputs = document.querySelectorAll('.time-input');
+    
+          // Initialize variables to store total hours and minutes
+          let totalHours = 0;
+          let totalMinutes = 0;
+          let total = 0;
+    
+          // Loop through each time input and add up the values
+          timeInputs.forEach(input => {
+            const value = parseInt(input.value, 10);
+            if (!isNaN(value)) {
+              if (input.previousElementSibling.textContent === 'Hours:') {
+                totalHours += value;
+              } else if (input.previousElementSibling.textContent === 'Minutes:') {
+                totalMinutes += value;
+              }
+            }
+          });
+    
+          // Calculate the remaining hours and minutes from totalMinutes
+          totalHours += Math.floor(totalMinutes / 60);
+          totalMinutes = totalMinutes % 60;
 
-    // Calculate the remaining hours and minutes from totalMinutes
-    totalHours += Math.floor(totalMinutes / 60);
-    totalMinutes = totalMinutes % 60;
+          // Get the multiplication factor
+          const multiplyFactor = parseFloat(document.getElementById('multiplyFactor').value) || 1;
+    
+          total = (totalMinutes/60 + totalHours) * multiplyFactor;
 
-    // Get the multiplication factor
-    const multiplyFactor = parseFloat(document.getElementById('multiplyFactor').value) || 1;
+          // Multiply the total time by the factor
+          totalHours *= multiplyFactor;
+          totalMinutes *= multiplyFactor;
+    
+          // Calculate the remaining hours and minutes from totalMinutes after multiplication
+          totalHours += Math.floor(totalMinutes / 60);
+          totalMinutes = totalMinutes % 60;
 
-    // Multiply the total time by the factor
-    totalHours *= multiplyFactor;
-    totalMinutes *= multiplyFactor;
 
-    // Calculate the remaining hours and minutes from totalMinutes after multiplication
-    totalHours += Math.floor(totalMinutes / 60);
-    totalMinutes = totalMinutes % 60;
+          // Format the result
+          const formattedResult = `${String(totalHours).padStart(2, '0')}:${String(totalMinutes).padStart(2, '0')}`;
+          
+          //Validate result
+          let answer = '';
+          if (total.toFixed(2) == 0) {
+            answer = 'Ayoo, why you don\'t even try?';
+          } else if (total.toFixed(2) < 50) {
+            answer = 'Hope you still writing you data?';
+          } else if (total.toFixed(2) < 100) {
+            answer = 'Not bad but you can do better!';
+          } else if (total.toFixed(2) < 150) {
+            answer = 'Nice job! Now you can play BG3!';
+          } else if (total.toFixed(2) < 200) {
+            answer = 'Yay, hope you alive! Chill now!';
+          } else if (total.toFixed(2) < 250) {
+            answer = 'Wow! Awesome work, have a rest!!';
+          } else {
+            answer = 'WTF! That\'s awesome!!!!';
+          }
 
-    // Format the result
-    const formattedResult = `${String(totalHours).padStart(2, '0')}:${String(totalMinutes).padStart(2, '0')}`;
 
-    // Display the result
-    document.getElementById('result').textContent = `Result: ${formattedResult}`;
-  }
+          let star = ''
+          if((Math.floor(total.toFixed(2) / 50)) >= 5) {
+            star = '⭐'.repeat(5);
+          } else if ((Math.floor(total.toFixed(2) / 50)) < 1) {
+            star = '🤨'
+          } else {
+            star = '⭐'.repeat(Math.floor(total.toFixed(2) / 50));
+          }
+          answer = star + answer;
 
-  // Listen for input changes and recalculate the result
-  const inputs = document.querySelectorAll('.time-input');
-  inputs.forEach(input => input.addEventListener('input', calculateResult));
-
-  // Listen for multiplication factor changes and recalculate the result
-  document.getElementById('multiplyFactor').addEventListener('input', calculateResult);
-</script>
+          // Display the result
+          document.getElementById('stars').textContent = `${answer}`;
+          document.getElementById('result').textContent = `Result: ${total.toFixed(2)}`;
+        }
+    
+        // Listen for input changes and recalculate the result
+        const inputs = document.querySelectorAll('.time-input');
+        inputs.forEach(input => input.addEventListener('input', calculateResult));
+    
+        // Listen for multiplication factor changes and recalculate the result
+        document.getElementById('multiplyFactor').addEventListener('input', calculateResult);
+      </script>
 
 </body>
 </html>

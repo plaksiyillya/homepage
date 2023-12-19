@@ -1,18 +1,85 @@
 body {
-  font-family: Arial, sans-serif;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 20px;
+  flex-direction: column;
+  background: linear-gradient(0deg, hsl(145, 54%, 23%), rgb(84, 134, 69));
+  font-family: "montserrat", sans-serif;
+  color: #fff;
 }
 
+h1 {
+  font-weight: 800;
+  font-size: 4em;
+  margin: 0.2em;
+}
+
+label {
+  font-weight: 900;
+  font-size: 1.6em;
+  padding: 0.2em;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
+}
 input {
   padding: 1em;
-  margin-bottom: 1em;
+  margin-bottom: 0.2em;
+  margin-top: 0.2em;
+  border-radius: 1em;
+  font-size: large;
+  font-weight: 900;
+  border: 0;
 }
 
-#result {
-  font-weight: bold;
-  margin-top: 1em;
+#time-input {
+  width: 3em;
+  height: 1em;
 }
 
+#multiplyFactor {
+  width: 10em;
+  height: 1em;
+  margin: 1em;
+}
+
+.button-28 {
+  appearance: none;
+  border: 0;
+  border-radius: 1em;
+  background-color: #10c200;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 900;
+  line-height: normal;
+  margin: 1em;
+  outline: none;
+  padding: 1em 3em 1em 3em;
+  text-align: center;
+  text-decoration: none;
+
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.button-28:disabled {
+  pointer-events: none;
+}
+
+.button-28:hover {
+  color: #fff;
+  background-color: #10c200;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
